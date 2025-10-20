@@ -1,94 +1,120 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alisha Jahan | Cloud computing & DevOps Innovator</title>
+    <title>Alisha Jahan | Cloud & DevOps Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --bg-color: #0a0f1e;
-            --primary-glow: #00aaff;
-            --secondary-glow: #00f0ff;
-            --text-color: #e0e0e0;
-            --text-muted: #8892b0;
-            --card-bg: rgba(15, 23, 42, 0.5);
-            --border-color: rgba(0, 170, 255, 0.2);
-            --border-hover: rgba(0, 240, 255, 0.7);
+            --bg-color: #0a0f1f;
+            --primary-glow: #00ffff;
+            --secondary-glow: #00aaff;
+            --card-bg: rgba(10, 15, 31, 0.1);
+            --border-color: rgba(0, 255, 255, 0.2);
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: #e0e0e0;
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
         }
 
-        /* --- Custom Glows & Effects --- */
-        .glow-text {
-            text-shadow: 0 0 5px var(--primary-glow), 0 0 10px var(--primary-glow);
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
         }
 
-        .glow-button {
-            box-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .glow-button:hover {
-            box-shadow: 0 0 15px var(--secondary-glow), 0 0 30px var(--secondary-glow);
-            transform: translateY(-2px);
-        }
-
-        .pulsate {
-            animation: pulsate 2.5s infinite;
-        }
-
-        @keyframes pulsate {
-            0% { box-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow); }
-            50% { box-shadow: 0 0 15px var(--secondary-glow), 0 0 30px var(--secondary-glow); }
-            100% { box-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow); }
-        }
-
-        /* --- Glassmorphism Card --- */
+        /* Glassmorphism Card */
         .glass-card {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
-            transition: border-color 0.3s ease, transform 0.3s ease;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 20px var(--primary-glow), inset 0 0 10px rgba(0, 255, 255, 0.2);
         }
         
-        .glass-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-5px);
+        /* Glow Effect */
+        .text-glow {
+            text-shadow: 0 0 8px var(--primary-glow), 0 0 12px var(--secondary-glow);
+        }
+        
+        .button-glow {
+            background: linear-gradient(90deg, var(--primary-glow), var(--secondary-glow));
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transition: all 0.3s ease;
         }
 
-        /* --- Section Header Styling --- */
-        .section-header {
-            color: var(--primary-glow);
-            font-family: monospace;
-            font-size: 1.25rem;
+        .button-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
         }
 
-        /* --- Typing Animation --- */
-        .typing-cursor {
+        /* Animated Subheading */
+        #animated-subheading {
             display: inline-block;
+            vertical-align: top;
+            position: relative;
+        }
+
+        #subheading-text {
+            transition: opacity 0.5s ease-in-out;
+            min-height: 48px; /* Adjust based on font size */
+        }
+        
+        /* Timeline */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
             width: 3px;
-            height: 1.2em;
-            background-color: var(--secondary-glow);
-            animation: blink 0.7s infinite;
-            margin-left: 4px;
+            background: linear-gradient(to bottom, transparent, var(--primary-glow), transparent);
+            animation: draw-line 5s linear forwards;
+            opacity: 0;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        @keyframes draw-line {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .timeline-item {
+            visibility: hidden;
         }
 
-        /* --- Scroll Indicator --- */
+        .timeline-item.animate {
+            visibility: visible;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(odd).animate {
+             animation-name: slideInLeft;
+        }
+
+        .timeline-item:nth-child(even).animate {
+             animation-name: slideInRight;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+
+
+        /* Scroll Indicator */
         .scroll-indicator {
             animation: bounce 2s infinite;
         }
@@ -98,456 +124,470 @@
                 transform: translateY(0);
             }
             40% {
-                transform: translateY(-15px);
+                transform: translateY(-20px);
             }
             60% {
-                transform: translateY(-8px);
+                transform: translateY(-10px);
             }
         }
         
-        /* --- Timeline Styling --- */
-        .timeline {
-            position: relative;
-        }
-
-        .timeline::before {
-            content: '';
+        /* Canvas background */
+        #neural-background {
             position: absolute;
-            width: 2px;
             top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -1px;
-            background-image: linear-gradient(to bottom, var(--primary-glow) 33%, transparent 33%, transparent 66%, var(--primary-glow) 66%, var(--primary-glow));
-            background-size: 2px 10px;
-            animation: draw-line 5s linear forwards;
-            height: 0;
-        }
-        
-        @keyframes draw-line {
-            to { height: 100%; }
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            right: -8px;
-            background-color: var(--bg-color);
-            border: 3px solid var(--primary-glow);
-            top: 20px;
-            border-radius: 50%;
-            z-index: 1;
-            box-shadow: 0 0 10px var(--primary-glow);
-        }
-
-        .timeline-left {
             left: 0;
-            padding-right: 3rem;
-        }
-
-        .timeline-right {
-            left: 50%;
-            padding-left: 3rem;
-        }
-
-        .timeline-right .timeline-item::after {
-            left: -8px;
-        }
-        
-        /* --- Reveal on scroll --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
     </style>
 </head>
-<body class="antialiased">
-    <!-- Hero Background Canvas -->
-    <canvas id="hero-canvas" class="fixed top-0 left-0 w-full h-full z-0"></canvas>
 
-    <!-- Main Content -->
-    <div class="relative z-10">
+<body class="overflow-x-hidden">
 
-        <!-- Section 1: Hero Section -->
-        <header class="h-screen flex items-center justify-center px-4 md:px-8">
-            <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="text-center md:text-left">
-                    <p class="text-lg text-gray-300 mb-2">Hello, I'm</p>
-                    <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-4">ALISHA JAHAN</h1>
-                    <p class="text-xl md:text-2xl text-gray-300 font-light min-h-[2.5rem]">
-                        <span id="typing-text"></span><span class="typing-cursor"></span>
-                    </p>
-                    <div class="mt-10">
-                        <a href="#experience" class="inline-block bg-sky-500 text-white font-bold py-3 px-8 rounded-full text-lg glow-button pulsate">
-                            View My Work
-                        </a>
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="header">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white text-glow">AJ</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-gray-300 hover:text-white hover:text-glow transition">About</a>
+                <a href="#experience" class="text-gray-300 hover:text-white hover:text-glow transition">Experience</a>
+                <a href="#achievements" class="text-gray-300 hover:text-white hover:text-glow transition">Achievements</a>
+                <a href="#contact" class="text-gray-300 hover:text-white hover:text-glow transition">Contact</a>
+            </div>
+             <a href="#contact" class="hidden md:block px-6 py-2 rounded-full text-black font-semibold button-glow">
+                Connect
+            </a>
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                <svg id="menu-close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x hidden"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-lg">
+            <a href="#about" class="block py-2 px-6 text-gray-300 hover:text-white">About</a>
+            <a href="#experience" class="block py-2 px-6 text-gray-300 hover:text-white">Experience</a>
+            <a href="#achievements" class="block py-2 px-6 text-gray-300 hover:text-white">Achievements</a>
+            <a href="#contact" class="block py-4 px-6 text-gray-300 hover:text-white">Contact</a>
+        </div>
+    </header>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="h-screen flex items-center justify-center relative overflow-hidden">
+            <canvas id="neural-background"></canvas>
+            <div class="container mx-auto px-6 z-10">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <!-- Left Side -->
+                    <div class="text-center md:text-left md:w-1/2 mb-10 md:mb-0">
+                        <p class="text-lg md:text-xl text-gray-300 mb-2">Hello, I’m</p>
+                        <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-tight">
+                            ALISHA <span class="text-glow">JAHAN</span>
+                        </h1>
+                        <div id="animated-subheading" class="text-xl md:text-2xl mt-4 text-cyan-400">
+                            <span id="subheading-text">Cloud Computing Specialist.</span>
+                        </div>
+                        <div class="mt-8">
+                            <a href="#experience" class="px-8 py-4 rounded-full text-black font-bold text-lg button-glow inline-block">
+                                View My Work
+                            </a>
+                        </div>
                     </div>
+                    <!-- Right Side -->
+                    <div class="md:w-1/2 flex justify-center">
+    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+        <div class="absolute inset-0 border-4 border-cyan-400 rounded-full animate-pulse" style="box-shadow: 0 0 40px var(--primary-glow);"></div>
+        <img src="alisha formal new.png" 
+             alt="Alisha Jahan" 
+             class="w-full h-full object-cover rounded-full p-2">
+    </div>
+</div>
                 </div>
-                <div class="hidden md:flex justify-center items-center">
-                    <div class="relative w-96 h-96">
-                       <img src="WhatsApp Image 2025-10-09 at 10.00.33_5c5c0319.jpg" alt="Alisha Jahan" class="rounded-full object-cover w-full h-full border-4 border-sky-500/50" style="box-shadow: 0 0 25px rgba(0, 170, 255, 0.4), 0 0 50px rgba(0, 170, 255, 0.3); object-position: center top;">
+            </div>
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2">
+                <div class="scroll-indicator">
+                    <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Skills Section -->
+        <section id="about" class="py-20 lg:py-32">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">About <span class="text-glow">Me</span> & My Skills</h2>
+                <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    <!-- About Text -->
+                    <div class="space-y-6 text-gray-300 text-lg">
+                        <p>I am a dedicated Cloud and DevOps enthusiast with hands-on experience in building scalable, high-availability solutions. Through more than 10 real-world projects, I've leveraged tools like Docker, Jenkins, Kubernetes, and AWS to enhance deployment speed and optimize infrastructure costs.</p>
+                        <p>Currently pursuing a B.Tech in Computer Science, I am passionate about applying my skills to solve complex problems and drive innovation in cloud architecture and automation.</p>
+                    </div>
+                    <!-- Skills Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6">
+                        <div class="glass-card p-4 flex flex-col items-center justify-center text-center space-y-2">
+                            <i data-lucide="cloud" class="w-10 h-10 text-cyan-400"></i>
+                            <span class="font-semibold">AWS</span>
+                        </div>
+                        <div class="glass-card p-4 flex flex-col items-center justify-center text-center space-y-2">
+                            <i data-lucide="box" class="w-10 h-10 text-cyan-400"></i>
+                            <span class="font-semibold">Docker</span>
+                        </div>
+                        <div class="glass-card p-4 flex flex-col items-center justify-center text-center space-y-2">
+                            <i data-lucide="ship-wheel" class="w-10 h-10 text-cyan-400"></i>
+                            <span class="font-semibold">Kubernetes</span>
+                        </div>
+                        <div class="glass-card p-4 flex flex-col items-center justify-center text-center space-y-2">
+                            <i data-lucide="webhook" class="w-10 h-10 text-cyan-400"></i>
+                            <span class="font-semibold">Jenkins</span>
+                        </div>
+                        <div class="glass-card p-4 flex flex-col items-center justify-center text-center space-y-2">
+                             <i data-lucide="git-branch-plus" class="w-10 h-10 text-cyan-400"></i>
+                            <span class="font-semibold">Git/GitHub</span>
+                        </div>
+                         <div class="glass-card p-4 flex flex-col items-center justify-center text-center space-y-2">
+                            <i data-lucide="terminal" class="w-10 h-10 text-cyan-400"></i>
+                            <span class="font-semibold">Linux</span>
+                        </div>
+                         <div class="glass-card p-4 flex flex-col items-center justify-center text-center space-y-2">
+                           <i data-lucide="cog" class="w-10 h-10 text-cyan-400"></i>
+                            <span class="font-semibold">CI/CD</span>
+                        </div>
+                         <div class="glass-card p-4 flex flex-col items-center justify-center text-center space-y-2">
+                            <i data-lucide="code" class="w-10 h-10 text-cyan-400"></i>
+                            <span class="font-semibold">Python</span>
+                        </div>
+                        <div class="glass-card p-4 flex flex-col items-center justify-center text-center space-y-2">
+                            <i data-lucide="database" class="w-10 h-10 text-cyan-400"></i>
+                            <span class="font-semibold">MySQL</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <a href="#about" class="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-indicator">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400" style="filter: drop-shadow(0 0 5px var(--primary-glow));">
-                    <polyline points="7 13 12 18 17 13"></polyline>
-                    <polyline points="7 6 12 11 17 6"></polyline>
-                </svg>
-            </a>
-        </header>
+        </section>
 
-        <main class="container mx-auto px-4 md:px-8">
-            
-            <!-- Section 2: Profile & Expertise -->
-            <section id="about" class="py-20 md:py-32">
-                <div class="text-center mb-16 reveal">
-                    <h2 class="section-header">01. // ABOUT & SKILLS</h2>
-                    <h3 class="text-4xl font-bold mt-2">Crafting Robust & Scalable Cloud Solutions</h3>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
-                    <div class="lg:col-span-2 text-lg text-gray-300 space-y-4 leading-relaxed reveal">
-                        <p>Aspiring DevOps Engineer with over a year of experience driving innovation through hands-on Kubernetes, Docker, and implementing scalable CI/CD pipelines. My passion lies in applying robust security practices to ensure efficient and secure application delivery.</p>
-                        <p>I thrive on building automated, containerized workflows that enhance reliability, reduce manual intervention, and accelerate development cycles, turning complex infrastructure challenges into streamlined operational successes.</p>
-                    </div>
-                    <div class="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-4 reveal" style="transition-delay: 200ms;">
-                        <!-- Skill Cards -->
-                        <div class="glass-card p-4 text-center rounded-xl flex flex-col items-center justify-center aspect-square">
-                            <svg class="h-10 w-10 mb-2 text-sky-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 16.921c0 .438-.158.875-.475 1.219l-1.425 1.547a1.687 1.687 0 0 1-1.218.498H5.618a1.687 1.687 0 0 1-1.219-.498l-1.425-1.547a1.76 1.76 0 0 1-.475-1.219V7.08a1.76 1.76 0 0 1 .475-1.219l1.425-1.547A1.687 1.687 0 0 1 5.618 3.82h12.764a1.687 1.687 0 0 1 1.219.498l1.425 1.547c.317.344.475.781.475 1.219zM8.88 7.6h6.241M5.618 12.4h3.263m2.175 0h4.351"></path></svg>
-                            <h4 class="font-semibold">Docker & Kubernetes</h4>
+        <!-- Experience Timeline -->
+        <section id="experience" class="py-20 lg:py-32">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">My <span class="text-glow">Experience</span></h2>
+                <div class="relative timeline max-w-3xl mx-auto">
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item mb-12 md:flex items-center w-full">
+                        <div class="md:w-1/2 md:pr-8">
+                            <div class="glass-card p-6">
+                                <p class="text-cyan-400 text-sm mb-1">Oct 2024 - Present</p>
+                                <h3 class="text-xl font-bold text-white mb-2">Cloud Intern</h3>
+                                <p class="text-gray-400 mb-4">CETPA Infotech PVT LTD</p>
+                                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                    <li>Supported 3+ real-world deployments using AWS EC2, Lambda, and Auto Scaling.</li>
+                                    <li>Built 10+ serverless functions, boosting compute efficiency by 35%.</li>
+                                    <li>Enhanced skills in cloud architecture, automation, and infrastructure management.</li>
+                                </ul>
+                            </div>
                         </div>
-                         <div class="glass-card p-4 text-center rounded-xl flex flex-col items-center justify-center aspect-square">
-                            <svg class="h-10 w-10 mb-2 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 104 16.25"></path><path d="M8 16a4 4 0 110-8 4 4 0 010 8z"></path><path d="M22 10a2 2 0 100-4 2 2 0 000 4z"></path></svg>
-                            <h4 class="font-semibold">AWS Cloud</h4>
-                        </div>
-                        <div class="glass-card p-4 text-center rounded-xl flex flex-col items-center justify-center aspect-square">
-                             <svg class="h-10 w-10 mb-2 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v2m-5.657 1.343l-1.414 1.414m12.728 0l1.414 1.414M12 10a2 2 0 100 4 2 2 0 000-4z"></path><path d="M4 12H2m18 0h-2m-9 7.657l-1.414 1.414m12.728 0l1.414-1.414M12 22v-2"></path></svg>
-                            <h4 class="font-semibold">Jenkins & CI/CD</h4>
-                        </div>
-                        <div class="glass-card p-4 text-center rounded-xl flex flex-col items-center justify-center aspect-square">
-                            <svg class="h-10 w-10 mb-2 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-                            <h4 class="font-semibold">DevSecOps</h4>
-                        </div>
-                        <div class="glass-card p-4 text-center rounded-xl flex flex-col items-center justify-center aspect-square">
-                           <svg class="h-10 w-10 mb-2 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"/><path d="M12 14v8"/><path d="M8 10h8v4H8z"/><path d="M6 4h12v6H6z"/></svg>
-                            <h4 class="font-semibold">Python & Flask</h4>
-                        </div>
-                        <div class="glass-card p-4 text-center rounded-xl flex flex-col items-center justify-center aspect-square">
-                            <svg class="h-10 w-10 mb-2 text-sky-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L8.6 3.3A2 2 0 0 0 6.9 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16z"></path><path d="M12 10h4"></path><path d="M12 14h4"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg>
-                            <h4 class="font-semibold">Linux & Git</h4>
+                        <div class="hidden md:block w-1/2"></div>
+                        <div class="hidden md:flex absolute items-center justify-center w-10 h-10 rounded-full bg-cyan-500 shadow-lg left-1/2 -translate-x-1/2 -translate-y-4">
+                            <i data-lucide="briefcase" class="w-6 h-6 text-black"></i>
                         </div>
                     </div>
+                     <!-- Placeholder for future roles -->
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Section 3: Work Experience -->
-            <section id="experience" class="py-20 md:py-32">
-                <div class="text-center mb-16 reveal">
-                    <h2 class="section-header">02. // CAREER TRAJECTORY</h2>
-                    <h3 class="text-4xl font-bold mt-2">Professional Journey</h3>
-                </div>
-                
-                <div class="max-w-4xl mx-auto timeline">
-                    <!-- Job 1 -->
-                    <div class="timeline-container timeline-right reveal">
-                        <div class="timeline-item glass-card p-6 rounded-xl relative">
-                            <h4 class="font-bold text-sky-400 text-lg">CloudClan Community</h4>
-                            <h5 class="font-semibold text-xl mb-1 text-white">DevOps Research Intern</h5>
-                            <p class="text-sm text-gray-400 mb-4">2022 - Present</p>
-                            <ul class="list-disc list-inside text-gray-300 space-y-2">
-                                <li>Designed and deployed a Dockerized Flask application with backend integration, ensuring scalable and containerized deployment workflows.</li>
-                                <li>Implemented CI/CD practices and optimized deployment pipelines, enhancing reliability and reducing manual intervention.</li>
-                                <li>Mentored a junior intern by providing technical guidance, code reviews, and project support.</li>
-                            </ul>
-                        </div>
+        <!-- Achievements Section -->
+        <section id="achievements" class="py-20 lg:py-32 bg-black/20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">Key <span class="text-glow">Achievements</span></h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Achievement Card 1 -->
+                    <div class="glass-card p-8 text-center">
+                        <h3 class="text-5xl font-bold text-cyan-400 text-glow">40%</h3>
+                        <p class="mt-4 text-lg font-semibold text-white">Faster Deployments</p>
+                        <p class="mt-2 text-gray-400">Automated CI/CD pipelines with Jenkins, reducing manual deployment time significantly.</p>
                     </div>
-                    <!-- Job 2 -->
-                    <div class="timeline-container timeline-left reveal">
-                        <div class="timeline-item glass-card p-6 rounded-xl relative">
-                             <h4 class="font-bold text-sky-400 text-lg">Cetpa Infotech pvt ltd</h4>
-                            <h5 class="font-semibold text-xl mb-1 text-white">AWS Cloud Intern</h5>
-                            <p class="text-sm text-gray-400 mb-4">June 2024 - July 2024</p>
-                            <ul class="list-disc list-inside text-gray-300 space-y-2">
-                                <li>Gained hands-on experience with AWS EC2, Lambda, Load Balancers, and Auto Scaling, supporting 3+ real-world deployments.</li>
-                                <li>Built over 10 serverless functions with AWS Lambda, boosting compute efficiency by 35%.</li>
-                            </ul>
-                        </div>
+                    <!-- Achievement Card 2 -->
+                    <div class="glass-card p-8 text-center">
+                        <h3 class="text-5xl font-bold text-cyan-400 text-glow">10+</h3>
+                        <p class="mt-4 text-lg font-semibold text-white">Cloud Projects Delivered</p>
+                        <p class="mt-2 text-gray-400">Successfully executed diverse cloud projects, demonstrating hands-on expertise.</p>
+                    </div>
+                    <!-- Achievement Card 3 -->
+                    <div class="glass-card p-8 text-center">
+                        <h3 class="text-5xl font-bold text-cyan-400 text-glow">500+</h3>
+                        <p class="mt-4 text-lg font-semibold text-white">Student Impact</p>
+                        <p class="mt-2 text-gray-400">Designed a campus food-ordering system with potential to serve over 1,000 daily users.</p>
                     </div>
                 </div>
-            </section>
-            
-            <!-- Section 4: Impact & Achievements -->
-            <section class="py-20 md:py-32">
-                <div class="text-center mb-16 reveal">
-                    <h2 class="section-header">03. // KEY ACHIEVEMENTS</h2>
-                    <h3 class="text-4xl font-bold mt-2">Automation & Impact</h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="glass-card p-8 rounded-xl text-center reveal">
-                        <h3 class="text-6xl font-black text-sky-400 glow-text mb-2">50%</h3>
-                        <h4 class="text-xl font-bold mb-2">Faster Deployments</h4>
-                        <p class="text-gray-400">Cut deployment time by 50% using Kubernetes and ArgoCD for continuous delivery with zero downtime.</p>
-                    </div>
-                    <div class="glass-card p-8 rounded-xl text-center reveal" style="transition-delay: 200ms;">
-                        <h3 class="text-6xl font-black text-sky-400 glow-text mb-2">40%</h3>
-                        <h4 class="text-xl font-bold mb-2">Reduced Manual Work</h4>
-                        <p class="text-gray-400">Automated CI/CD pipelines with Jenkins on AWS EC2, streamlining build processes and reducing manual effort.</p>
-                    </div>
-                    <div class="glass-card p-8 rounded-xl text-center reveal" style="transition-delay: 400ms;">
-                        <h3 class="text-6xl font-black text-sky-400 glow-text mb-2">Top 3</h4>
-                        <h4 class="text-xl font-bold mb-2">Hackathon Finalist</h4>
-                        <p class="text-gray-400">Achieved 3rd Runner Up out of 30+ teams by building a full-stack reseller platform with secure, real-time features.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Section 5: Education & Publication -->
-            <section class="py-20 md:py-32">
-                 <div class="text-center mb-16 reveal">
-                    <h2 class="section-header">04. // EDUCATION & CERTIFICATIONS</h2>
-                    <h3 class="text-4xl font-bold mt-2">Foundations of Expertise</h3>
-                </div>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                     <div class="reveal">
-                        <h4 class="text-2xl font-bold mb-6 text-sky-400">Education</h4>
-                        <div class="space-y-6">
-                           <div>
-                               <p class="text-lg font-semibold">GNA University</p>
-                               <p class="text-gray-400">Bachelor of Technology in Computer Science & Engineering</p>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="reveal" style="transition-delay: 200ms;">
-                         <h4 class="text-2xl font-bold mb-6 text-sky-400">Certifications</h4>
-                         <div class="flex items-start space-x-4">
+            </div>
+        </section>
+        
+        <!-- Education & Certifications Section -->
+        <section id="education" class="py-20 lg:py-32">
+            <div class="container mx-auto px-6">
+                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">Education & <span class="text-glow">Certifications</span></h2>
+                 <div class="grid md:grid-cols-2 gap-12 lg:gap-20">
+                     <!-- Education -->
+                     <div>
+                         <h3 class="text-2xl font-bold text-white mb-6">Education</h3>
+                         <div class="glass-card p-6 flex items-center space-x-4">
+                            <div class="p-3 bg-cyan-900/50 rounded-lg"><i data-lucide="graduation-cap" class="w-8 h-8 text-cyan-400"></i></div>
                              <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400 mt-1"><path d="M12 15l-3.5-3.5a2.12 2.12 0 1 1 3-3L12 9l.5-.5a2.12 2.12 0 1 1 3 3L12 15z"></path><path d="M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10z"></path></svg>
-                             </div>
-                             <div class="space-y-2">
-                                 <p class="font-semibold leading-relaxed">AWS Cloud Architecture</p>
-                                 <p class="font-semibold leading-relaxed">AWS Cloud Foundation</p>
-                                 <p class="font-semibold leading-relaxed">AWS Data Centre Technician</p>
+                                 <p class="font-bold text-white">Bachelor of Technology, CSE</p>
+                                 <p class="text-gray-400">GNA University, Punjab, India</p>
+                                 <p class="text-sm text-cyan-500">2022 - 2026</p>
                              </div>
                          </div>
                      </div>
-                 </div>
-            </section>
-            
-            <!-- Section 6: Contact -->
-            <footer id="contact" class="py-20 md:py-32 text-center">
-                 <div class="reveal">
-                    <h2 class="section-header mb-4">05. // GET IN TOUCH</h2>
-                    <h3 class="text-4xl font-bold max-w-2xl mx-auto mb-4">Have a project in mind or want to collaborate?</h3>
-                    <p class="text-lg text-gray-400 max-w-xl mx-auto mb-10">I'm currently available for consulting opportunities and speaking engagements.</p>
-                     <div class="flex justify-center space-x-6 mb-10">
-                         <a href="mailto:jahanalisha17@gmail.com" class="text-gray-400 hover:text-sky-400 transition-colors">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                         </a>
-                         <a href="#" class="text-gray-400 hover:text-sky-400 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                         </a>
+                     <!-- Certifications -->
+                     <div>
+                          <h3 class="text-2xl font-bold text-white mb-6">Certifications</h3>
+                          <div class="space-y-4">
+                            <div class="glass-card p-4 flex items-center space-x-4">
+                               <div class="p-2 bg-cyan-900/50 rounded-lg"><i data-lucide="award" class="w-6 h-6 text-cyan-400"></i></div>
+                                <div>
+                                    <p class="font-semibold text-white">AWS Cloud Architecture</p>
+                                </div>
+                            </div>
+                             <div class="glass-card p-4 flex items-center space-x-4">
+                                <div class="p-2 bg-cyan-900/50 rounded-lg"><i data-lucide="award" class="w-6 h-6 text-cyan-400"></i></div>
+                                <div>
+                                    <p class="font-semibold text-white">AWS Cloud Foundation</p>
+                                </div>
+                            </div>
+                            <div class="glass-card p-4 flex items-center space-x-4">
+                               <div class="p-2 bg-cyan-900/50 rounded-lg"><i data-lucide="award" class="w-6 h-6 text-cyan-400"></i></div>
+                                <div>
+                                    <p class="font-semibold text-white">AWS Data Centre Technician</p>
+                                </div>
+                            </div>
+                          </div>
                      </div>
-                     <a href="mailto:jahanalisha17@gmail.com" class="inline-block bg-sky-500 text-white font-bold py-3 px-8 rounded-full text-lg glow-button">
-                        Say Hello
-                     </a>
                  </div>
-            </footer>
-        </main>
-    </div>
+            </div>
+        </section>
 
-<script>
-    // --- Hero Background Animation ---
-    const canvas = document.getElementById('hero-canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 lg:py-32 text-center bg-black/20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-5xl font-bold text-white leading-tight max-w-4xl mx-auto">Have a project in mind or want to collaborate?</h2>
+                <p class="text-gray-300 text-lg mt-4 mb-8 max-w-2xl mx-auto">I'm currently available for consulting, internships, and speaking opportunities. Let's build the future of cloud together.</p>
+                <a href="mailto:Inquiries.alishajahan@gmail.com" class="px-8 py-4 rounded-full text-black font-bold text-lg button-glow inline-block mb-12">
+                    Say Hello
+                </a>
+                <div class="flex justify-center space-x-8">
+                     <a href="https://www.linkedin.com/in/alisha-jahan2004/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-cyan-400 hover:scale-110 transition-transform">
+                        <i data-lucide="linkedin" class="w-8 h-8"></i>
+                    </a>
+                    <a href="https://github.com/AlishaJahan" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-cyan-400 hover:scale-110 transition-transform">
+                        <i data-lucide="github" class="w-8 h-8"></i>
+                    </a>
+                     <a href="mailto:Inquiries.alishajahan@gmail.com" class="text-gray-400 hover:text-cyan-400 hover:scale-110 transition-transform">
+                        <i data-lucide="mail" class="w-8 h-8"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    let particlesArray;
+    <!-- Footer -->
+    <footer class="py-6 bg-black/30">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2025 Alisha Jahan. All rights reserved.</p>
+        </div>
+    </footer>
 
-    const mouse = {
-        x: null,
-        y: null,
-        radius: (canvas.height / 120) * (canvas.width / 120)
-    };
+    <script>
+        // Lucide Icons
+        lucide.createIcons();
 
-    window.addEventListener('mousemove', function(event) {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    });
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOpenIcon = document.getElementById('menu-open-icon');
+        const menuCloseIcon = document.getElementById('menu-close-icon');
 
-    class Particle {
-        constructor(x, y, directionX, directionY, size, color) {
-            this.x = x;
-            this.y = y;
-            this.directionX = directionX;
-            this.directionY = directionY;
-            this.size = size;
-            this.color = color;
-        }
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-            ctx.fillStyle = 'rgba(0, 170, 255, 0.5)';
-            ctx.fill();
-        }
-        update() {
-            if (this.x > canvas.width || this.x < 0) {
-                this.directionX = -this.directionX;
-            }
-            if (this.y > canvas.height || this.y < 0) {
-                this.directionY = -this.directionY;
-            }
-
-            let dx = mouse.x - this.x;
-            let dy = mouse.y - this.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < mouse.radius + this.size) {
-                if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-                    this.x += 5;
-                }
-                if (mouse.x > this.x && this.x > this.size * 10) {
-                    this.x -= 5;
-                }
-                if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-                    this.y += 5;
-                }
-                if (mouse.y > this.y && this.y > this.size * 10) {
-                    this.y -= 5;
-                }
-            }
-            this.x += this.directionX;
-            this.y += this.directionY;
-            this.draw();
-        }
-    }
-
-    function init() {
-        particlesArray = [];
-        let numberOfParticles = (canvas.height * canvas.width) / 15000;
-        for (let i = 0; i < numberOfParticles; i++) {
-            let size = (Math.random() * 2) + 1;
-            let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-            let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-            let directionX = (Math.random() * 0.4) - 0.2;
-            let directionY = (Math.random() * 0.4) - 0.2;
-            let color = 'rgba(0, 170, 255, 0.5)';
-            particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-        }
-    }
-
-    function connect() {
-        let opacityValue = 1;
-        for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a; b < particlesArray.length; b++) {
-                let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
-                    ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                    opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = 'rgba(0, 170, 255,' + opacityValue + ')';
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                    ctx.stroke();
-                }
-            }
-        }
-    }
-
-    function animate() {
-        requestAnimationFrame(animate);
-        ctx.clearRect(0, 0, innerWidth, innerHeight);
-        for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-        }
-        connect();
-    }
-
-    window.addEventListener('resize', function() {
-        canvas.width = innerWidth;
-        canvas.height = innerHeight;
-        mouse.radius = ((canvas.height / 120) * (canvas.height / 120));
-        init();
-    });
-
-    window.addEventListener('mouseout', function() {
-        mouse.x = undefined;
-        mouse.y = undefined;
-    });
-
-    init();
-    animate();
-
-    // --- Typing Animation ---
-    const typingTextElement = document.getElementById('typing-text');
-    const phrases = [
-        "Aspiring DevOps Engineer.",
-        "Cloud & CI/CD Specialist.",
-        "Automating Infrastructure, Delivering Value."
-    ];
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function type() {
-        const currentPhrase = phrases[phraseIndex];
-        if (isDeleting) {
-            typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
-            charIndex--;
-            if (charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-            }
-        } else {
-            typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
-            charIndex++;
-            if (charIndex === currentPhrase.length) {
-                isDeleting = true;
-                setTimeout(type, 2000); // Wait before deleting
-                return;
-            }
-        }
-        const typingSpeed = isDeleting ? 50 : 100;
-        setTimeout(type, typingSpeed);
-    }
-    
-    document.addEventListener("DOMContentLoaded", () => {
-        setTimeout(type, 500);
-    });
-
-    // --- Smooth Scroll & Reveal on Scroll ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuOpenIcon.classList.toggle('hidden');
+            menuCloseIcon.classList.toggle('hidden');
+        });
+        
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                 mobileMenu.classList.add('hidden');
+                 menuOpenIcon.classList.remove('hidden');
+                 menuCloseIcon.classList.add('hidden');
             });
         });
-    });
 
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-black/50', 'backdrop-blur-lg', 'shadow-lg');
+            } else {
+                header.classList.remove('bg-black/50', 'backdrop-blur-lg', 'shadow-lg');
             }
         });
-    }, {
-        threshold: 0.15
-    });
 
-    revealElements.forEach(el => {
-        revealObserver.observe(el);
-    });
+        // Animated Subheading
+        const subheadingText = document.getElementById('subheading-text');
+        const subheadings = [
+            "Cloud Computing Specialist.",
+            "DevOps & Automation Innovator.",
+            "Transforming Innovation into Impact."
+        ];
+        let subheadingIndex = 0;
 
-</script>
+        function changeSubheading() {
+            subheadingText.style.opacity = '0';
+            setTimeout(() => {
+                subheadingIndex = (subheadingIndex + 1) % subheadings.length;
+                subheadingText.textContent = subheadings[subheadingIndex];
+                subheadingText.style.opacity = '1';
+            }, 500);
+        }
+        setInterval(changeSubheading, 3000);
+
+        // Timeline Animation on Scroll
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        timelineItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        // Canvas Neural Network Background
+        const canvas = document.getElementById('neural-background');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        const mouse = {
+            x: null,
+            y: null,
+            radius: (canvas.height / 120) * (canvas.width / 120)
+        };
+
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = 'rgba(0, 255, 255, 0.5)';
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius + this.size) {
+                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+                        this.x += 5;
+                    }
+                    if (mouse.x > this.x && this.x > this.size * 10) {
+                        this.x -= 5;
+                    }
+                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+                        this.y += 5;
+                    }
+                    if (mouse.y > this.y && this.y > this.size * 10) {
+                        this.y -= 5;
+                    }
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 0.4) - 0.2;
+                let directionY = (Math.random() * 0.4) - 0.2;
+                let color = 'rgba(0, 255, 255, 0.8)';
+
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+                        ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(0, 255, 255, ${opacityValue})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        window.addEventListener('resize', function() {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            mouse.radius = ((canvas.height / 120) * (canvas.height / 120));
+            init();
+        });
+
+        window.addEventListener('mouseout', function() {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        });
+
+        init();
+        animate();
+    </script>
 </body>
 </html>
